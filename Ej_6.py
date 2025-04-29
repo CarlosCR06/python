@@ -1,3 +1,5 @@
+# AUTOR: Carlos Castro
+
 import numpy as np
 
 # Lista de países
