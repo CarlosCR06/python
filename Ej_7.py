@@ -1,3 +1,5 @@
+# AUTOR: Carlos Castro
+
 # Lista de alumnos
 alumnos = []
 
