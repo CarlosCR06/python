@@ -2,7 +2,6 @@ from datetime import date, datetime
 from typeguard import typechecked
 import calendar
 
-
 @typechecked
 def validar_fecha(fecha_str):
     try:
@@ -11,14 +10,23 @@ def validar_fecha(fecha_str):
     except ValueError:
         return False
 
-
 @typechecked
 def parsear_fecha(fecha_str):
     return datetime.strptime(fecha_str, "%d/%m/%Y").date()
 
-
 @typechecked
 class MiFecha:
+    """
+    Representa una fecha manipulable en Python con operaciones de suma y comparación.
+
+    Métodos:
+        añadir_dias(n): Añade o resta días a la fecha.
+        añadir_meses(n): Añade o resta meses a la fecha.
+        añadir_años(n): Añade o resta años a la fecha.
+        dias_entre(otra): Calcula la diferencia en días entre dos fechas.
+        formato_largo(): Devuelve la fecha en formato largo legible.
+    """
+
     def __init__(self, fecha):
         self.__fecha = fecha
 
@@ -31,9 +39,7 @@ class MiFecha:
         self.__fecha = nueva_fecha
 
     def añadir_dias(self, n):
-        año = self.__fecha.year
-        mes = self.__fecha.month
-        dia = self.__fecha.day
+        año, mes, dia = self.__fecha.year, self.__fecha.month, self.__fecha.day
         while n != 0:
             if n > 0:
                 dias_mes = calendar.monthrange(año, mes)[1]
@@ -99,9 +105,12 @@ class MiFecha:
     def __gt__(self, otro):
         return self.__fecha > otro.fecha
 
-
 @typechecked
 class Menu:
+    """
+    Menú interactivo para gestionar fechas mediante la clase MiFecha.
+    """
+
     def __init__(self):
         self.__opciones = []
         self.__mi_fecha = None
@@ -199,7 +208,6 @@ class Menu:
         self.añadir_opcion("Comparar con otra fecha", self.comparar_fecha)
         self.añadir_opcion("Mostrar formato largo", self.mostrar_formato_largo)
         self.añadir_opcion("Terminar", self.terminar)
-
 
 # Ejecución
 if __name__ == "__main__":
